@@ -12,7 +12,8 @@ int main ()
  inicio = clock();
  int i, nthreads; double pi, sum=0;
  step = 1.0/(double) num_steps;
- 
+ omp_lock_t writelock; //Declara cadeado
+ omp_init_lock(&writelock); //Inicia cadeado
  #pragma omp parallel num_threads(NUM_THREADS) 
  {
 	int i, id,nthrds;
@@ -23,8 +24,9 @@ int main ()
  									//se todas as threads atualizassem poderia dar problema de acesso a memória compartilhada
 	 for (i=id ;i< num_steps; i=i+nthrds) {
 	 	x = (i+0.5)*step;
-	 	#pragma omp atomic //Uma Thread executa por vez
-	 		sum += 4.0/(1.0+x*x); 
+	 	omp_set_lock(&writelock); //Abre cadeado
+	 		sum += 4.0/(1.0+x*x);
+    	omp_unset_lock(&writelock); //Fecha cadeado
 	 }
  }
  pi += sum * step;
