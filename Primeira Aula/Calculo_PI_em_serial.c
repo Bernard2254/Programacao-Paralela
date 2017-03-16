@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <time.h>
-static long num_steps = 100000;
+static long num_steps = 1000000;
 double step;
 clock_t inicio, fim, decorrido;
 int main ()
