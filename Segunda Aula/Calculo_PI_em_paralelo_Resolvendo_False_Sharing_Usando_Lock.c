@@ -29,6 +29,7 @@ int main ()
     	omp_unset_lock(&writelock); //Fecha cadeado
 	 }
  }
+ omp_destroy_lock(&writelock);
  pi += sum * step;
  printf("%f\n", pi);
  fim = clock();
