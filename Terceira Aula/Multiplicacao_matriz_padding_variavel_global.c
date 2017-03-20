@@ -25,18 +25,18 @@ void main(){
 			x[i] = rand()%10 + 1;
 			for(j=0; j<colunas; j++){
 				matriz1[i][j] = rand()%10 + 1;
-				printf("%d ", matriz1[i][j]);
+		//		printf("%d ", matriz1[i][j]);
 			}
-			printf("\n");
+		//	printf("\n");
 		}
 		printf("\n");
 
 		for(i=0; i<colunas; i++){
 			for(j=0; j<linhas; j++){
 				matriz2[i][j] = rand()%10 + 1;
-				printf("%d ", matriz2[i][j]);
+		//		printf("%d ", matriz2[i][j]);
 			}
-			printf("\n");
+		//	printf("\n");
 		}
 
 		printf("\n");
@@ -68,7 +68,7 @@ void main(){
 		for(i=0; i<linhas; i++){
 			if(yaux[i][0] != y[i][0])
 				igual = 0;
-			printf("%d ", y[i][0]);
+		//	printf("%d ", y[i][0]);
 		}
 		if(igual)
 			printf("\nFunfou!!!\n");
