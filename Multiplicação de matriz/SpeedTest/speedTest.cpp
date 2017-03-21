@@ -23,7 +23,7 @@ long getTime();
 
 int main(){
 	srand(time(NULL));
-
+	long s=getTime();
 	double sumTest=0;
 	for(int i=0;i<NOFTESTS;i++)
 		sumTest+=sum(ITERATIONS);
@@ -95,6 +95,8 @@ int main(){
 	}else{
 		printf("salvar mais rapido que acessar diretamente, diff=%lf\n",saveElementTest);
 	}
+	long e=getTime();
+	printf("\nTotal Time: %ld\n",e-s);
 
 	return 0;
 }
