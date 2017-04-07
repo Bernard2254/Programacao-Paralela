@@ -1,0 +1,55 @@
+SPMD -> Todas tarefas tem a mesma função (porém dados acessados diferentes);
+
+VS
+
+WorkSharing -> 
+
+	Dentro de uma região paralela:
+		#pragma opm for
+			for(I=0; I<N; I++) // divide as iterações para as threads automaticamente
+				Neat_stuff(I); // por default I será privado
+
+#pragma omp parallel
+{
+	int id, i, Nthrds, istart, iend;
+	id = omp_get_thread_num();
+	Nthrds = omp_get_num_threads();
+	istart = id * N/Nthrds;
+	iend = (id+1)*N/Nthrds;
+	if(id==Nthrds-1)
+		iend = N;
+	for(i=istart; i<iend; i++)
+		a[i] = a[i] + b[i];
+}
+
+Pode ser substituído por:
+
+#pragma omp parallel
+#pragma omp for
+	for(i=0; i<N; i++)
+		a[i] = a[i] +b[i];
+
+Pode ser combinado os pragmas:
+
+#pragma omp parallel for
+	for(i=0; i<N; i++)
+		a[i] = a[i] +b[i];
+
+Laços alinhados:
+
+#pragma omp parallel for collapse(2) //número de lops a serem excutados -> Funde os dois lops em um só
+for (int i=0; i<N; i++){
+	for (int j=0; j<M; j++){
+	 ......
+	}
+}
+
+Redução:
+
+Somar todos elementos de um vetor;
+
+double {{variavel}}=0.0;
+#pragma omp parallel for reduction(+:{{variavel}})
+for(i=0; i<MAX; i++){
+ {{variavel}}+=A[i];
+}
