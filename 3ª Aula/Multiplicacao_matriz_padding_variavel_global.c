@@ -10,7 +10,6 @@
 clock_t inicio, fim;
 
 void main(){
-	while(1){
 		int linhas, colunas, i, j;
 		srand(0);
 		printf("\nDigite o numero de linhas da matriz: ");
@@ -74,5 +73,4 @@ void main(){
 			printf("\nFunfou!!!\n");
 		else
 			printf("\nDesfunfou :(\n");
-	}
 }
