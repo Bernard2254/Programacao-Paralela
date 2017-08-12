@@ -10,4 +10,3 @@ run:
 	./$(SOURCE)
 destroy:
 	rm -rf ./$(SOURCE) $(SOURCE).o
-
